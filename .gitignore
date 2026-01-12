@@ -2,3 +2,4 @@
 task
 chroma.sqlite3
 vector_store/
+.env
