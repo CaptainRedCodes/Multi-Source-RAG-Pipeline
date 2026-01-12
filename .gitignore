@@ -1,0 +1,4 @@
+.venv/
+task
+chroma.sqlite3
+vector_store/
