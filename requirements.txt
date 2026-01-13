@@ -8,3 +8,9 @@ faiss-cpu
 chromadb
 langchain-text-splitters
 langchain-groq
+beautifulsoup4
+lxml
+bs4
+html5lib
+nest-asyncio
+fastapi

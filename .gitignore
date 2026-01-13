@@ -3,3 +3,4 @@ task
 chroma.sqlite3
 vector_store/
 .env
+__pycache__
