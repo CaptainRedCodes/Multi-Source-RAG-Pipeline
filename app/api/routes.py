@@ -20,7 +20,7 @@ from app.api.helper_functions import process_and_index, process_pdf_background, 
 from app.dependencies import (
     get_llm, get_rag, get_document_loader, get_chunk_loader, 
     get_embedding_manager, get_vector_store, get_web_loader, get_adv_rag,
-    get_initialization_status,get_task_manager
+    get_task_manager
 )
 from app.models import MultiUrlRequest,QueryRequest,RecursiveUrlRequest, TaskStatus,UrlRequest,SitemapRequest
 from app.task_manager import TaskManager
@@ -120,10 +120,10 @@ def get_all_tasks(task_manager: TaskManagerDep):
     return task_manager.get_all_tasks()
 
 
-@router.get("/components/status")
-def get_components_status():
-    """Get initialization status of heavy components."""
-    return get_initialization_status()
+# @router.get("/components/status")
+# def get_components_status():
+#     """Get initialization status of heavy components."""
+#     return get_initialization_status()
 
 
 # --- Query Endpoints (Synchronous - no change needed) ---
@@ -136,9 +136,9 @@ def rag_search(query: str, rag: RagDep):
 def llm_search(query: str, llm: LlmDep):
     return llm.llm_rag_retrive(query)
 
-@router.post("/advanced_query")
-def query_advanced_rag(request: QueryRequest, adv_rag: AdvRagDep):
-    results = adv_rag.query(request.query)
+@router.get("/advanced_query")
+def query_advanced_rag(query:str, adv_rag: AdvRagDep):
+    results = adv_rag.query(query)
     return {"response": results}
 
 
