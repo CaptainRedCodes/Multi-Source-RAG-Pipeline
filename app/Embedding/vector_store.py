@@ -7,14 +7,15 @@ import numpy as np
 
 class VectorStore:
 
-    def __init__(self,collection_name:str="pdf_documents",persist_dir:str = "../data/vector_store"):
+    def __init__(self,collection_name:str="pdf_documents",persist_dir:str = None):
         self.collection_name = collection_name
         
+        # Always resolve to absolute path from project root
+        base_dir = Path(__file__).resolve().parent.parent.parent
         if persist_dir is None:
-            base_dir = Path(__file__).resolve().parent.parent.parent
             self.persist_dir = base_dir / "data" / "vector_store"
         else:
-            self.persist_dir = Path(persist_dir).resolve()
+            self.persist_dir = (base_dir / persist_dir).resolve()
 
         self.client = None
         self.collection = None

@@ -17,8 +17,8 @@ class EmbeddingManager:
     def _load_model(self):
         try:
             self.model = SentenceTransformer(self.model_name)
-            print(f"✅ Loaded embedding model: {self.model_name}")
-            print(f"📐 Embedding dimension: {self.model.get_sentence_embedding_dimension()}")
+            print(f"Loaded embedding model: {self.model_name}")
+            print(f"Embedding dimension: {self.model.get_sentence_embedding_dimension()}")
         except Exception as e:
             raise ValueError(f"Error loading model: {e}")
     
@@ -33,7 +33,7 @@ class EmbeddingManager:
             if cache_key in self._query_cache:
                 return np.array([self._query_cache[cache_key]])
         
-        print(f"🔄 Generating embeddings for {len(texts)} text(s)...")
+        print(f"Generating embeddings for {len(texts)} text(s)...")
         embeddings = self.model.encode(texts, show_progress_bar=len(texts) > 5)
         
         # Cache single queries

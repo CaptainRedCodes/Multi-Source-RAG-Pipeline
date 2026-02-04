@@ -12,8 +12,9 @@ class DocumentLoader:
     def __init__(self):
         self.stats = {
             'total_files': 0,
-            'sucessfull': 0,
-            'failed': 0
+            'successful': 0,
+            'failed': 0,
+            'total_docs': 0
         }
 
     def _enrich_metadata(self, doc: Document, file_path: Path, file_type: str,additional_metadata: Optional[Dict[str, Any]] = None) -> Document:
@@ -77,7 +78,7 @@ class DocumentLoader:
                     if doc.page_content:
                         all_docs.append(doc)
                 
-                self.stats['sucessfull']+=1
+                self.stats['successful']+=1
                 self.stats['total_files']+=1
                 
             except Exception as e:

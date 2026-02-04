@@ -13,7 +13,7 @@ class WebLoader:
     def __init__(self):
         self.html_transformer = Html2TextTransformer()
         self.stats = {
-            'successfull':0,
+            'successful':0,
             'failure':0,
             'total':0
         }
@@ -44,11 +44,11 @@ class WebLoader:
         try:
             docs = WebBaseLoader(url).load()
             process =self._postprocess(docs, "web_page")
-            self.stats['sucessfull']+=1
+            self.stats['successful']+=1
             self.stats['total']+=1
         except Exception as e:
             self.stats['failure']+=1
-            raise ValueError("Error loading single page")
+            raise ValueError("Error loading single page",e)
         
         return process
 
@@ -59,7 +59,7 @@ class WebLoader:
             loader = SitemapLoader(sitemap_url, filter_urls=filter_urls)
             docs = loader.load()
             processed = self._postprocess(docs, "sitemap")
-            self.stats['sucessfull']+=1
+            self.stats['successful']+=1
             self.stats['total']+=1
         except Exception as e:
             self.stats['failure']+=1
@@ -76,7 +76,7 @@ class WebLoader:
                 max_depth=max_depth
             ).load()
             processed = self._postprocess(docs, "recursive")
-            self.stats['sucessfull']+=1
+            self.stats['successful']+=1
             self.stats['total']+=1
         except Exception as e:
             self.stats['failure']+=1
@@ -93,7 +93,7 @@ class WebLoader:
 
             docs = self.html_transformer.transform_documents(docs)
             processed = self._postprocess(docs, "async")
-            self.stats['sucessfull']+=1
+            self.stats['successful']+=1
             self.stats['total']+=len(docs)
         except Exception as e:
             self.stats['failure']+=1

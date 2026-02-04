@@ -9,7 +9,7 @@ class Chunking:
         pass
 
 
-    def recursive_text_splitter(self,docs:List[Document],chunk_size:int = 500,chunk_overlap:int=100,is_separator_regex:bool=False):
+    def recursive_text_splitter(self,docs:List[Document],chunk_size:int = 1500,chunk_overlap:int=50,is_separator_regex:bool=False):
         print("Started Chunking Process")
         try:
             text_splitter = RecursiveCharacterTextSplitter(

@@ -16,7 +16,7 @@ load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 class LLM:
-    def __init__(self,rag:RAGRetriever,model_name:str="meta-llama/llama-4-maverick-17b-128e-instruct"):
+    def __init__(self,rag:RAGRetriever,model_name:str="llama-3.3-70b-versatile"):
         self.model_name = model_name
         self.api_keys = GROQ_API_KEY
         self.rag = rag
